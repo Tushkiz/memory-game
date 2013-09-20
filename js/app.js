@@ -6,9 +6,10 @@ var app = app || {};
 $(function() {
 
   // Start the App
+  appView = new app.AppView();
 
   $('#play').on('click', function() {
-    new app.AppView();
+    appView.restart();
   });
 
 

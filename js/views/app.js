@@ -9,7 +9,7 @@ app.AppView = Backbone.View.extend({
 
   el: '.board',
 
-  collection : app.Tiles,
+  collection : new app.Tiles(),
 
   // Events.
   events: {
@@ -17,13 +17,14 @@ app.AppView = Backbone.View.extend({
   },
 
   initialize: function() {
+
     var self = this;
     var numOfTiles = this.randomNum(6,12);
+
     console.log('Num of Tiles: ' + numOfTiles);
 
     // Get data from words.json
     $.getJSON('/game/js/test.json', function(json) {
-      self.collection.drop();
       for (var i = 0; i < numOfTiles; i++) {
         self.collection.add(json.data[i]);
         self.collection.add(json.data[i]);
@@ -55,6 +56,12 @@ app.AppView = Backbone.View.extend({
 
   randomNum: function(from, to) {
     return Math.floor((Math.random()*(to - from + 1)) + from);
+  },
+
+  restart: function() {
+    this.collection.reset();
+    this.$el.empty();
+    this.initialize();
   }
 
 });
