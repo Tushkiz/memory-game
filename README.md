@@ -1,4 +1,4 @@
-memory-game
+Memory Game
 ===========
 
-Simple Memory Game
+Simple Memory Game using Backbone.js
