@@ -20,10 +20,11 @@ app.TileView = Backbone.View.extend({
   },
 
   render: function() {
+    this.$el.html( this.template( this.model.toJSON() ) );
     if(this.model.get('matchFound')) {
+      this.$el.empty();
       this.$el.toggleClass('hidden');
     }
-    this.$el.html( this.template( this.model.toJSON() ) );
     return this;
   },
 
