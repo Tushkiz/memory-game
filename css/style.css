@@ -3,7 +3,6 @@
   padding: 0;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
 }
 
 *:focus {
@@ -48,9 +47,8 @@ header {
   color: #eee;
 }
 
-#wrap .bttn {
+.bttn {
   display: block;
-  float: right;
   width: 100px;
   background-color: #8E44AD;
   color: #eee;
@@ -62,14 +60,41 @@ header {
   padding: 6px;
 }
 
-#wrap .bttn:hover {
+.bttn:hover {
   background-color: #9B59B6;
+}
+
+.push-right {
+  float: right;
+}
+
+.large {
+  margin: 10px auto;
+  width: 150px;
 }
 
 .board {
   margin: 10px auto;
   padding: 10px;
   width: 480px;
+}
+
+.scores {
+  text-align: center;
+  color: #fff;
+  margin: 20px auto;
+}
+.scores h1 {
+  margin: 10px auto 20px;
+  font-size: 2.4em;
+}
+.scores h2 {
+  color: #f55;
+}
+.scores a {
+  color: #000;
+  font-size: 1.2em;
+  margin: 20px auto;
 }
 
 .tile {

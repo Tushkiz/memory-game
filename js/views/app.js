@@ -12,28 +12,28 @@ app.AppView = Backbone.View.extend({
   // Tiles Collection
   collection : new app.Tiles(),
 
-  // Events.
   events: {
-
+    'click .bttn': 'restartGame'
   },
+
+  //scores view template
+  scoresTemplate: _.template('<div class="scores"> <h1>Kudos! You Won!!</h1> <h2>Score = <%= scores %>%</h2> <a class="bttn large" href="#">Play Again</a> </div>'),
 
   initialize: function() {
 
-    var self = this;
-    var numOfTiles = this.randomNum(6,12);
+    var self = this,
+        rndNum = this.randomNum(6,12);
 
-    console.log('Num of Tiles: ' + numOfTiles);
+    app.remainingTiles = app.numOfTiles = rndNum * 2;
 
     // Get data from words.json
     $.getJSON('/game/js/test.json', function(json) {
-      for (var i = 0; i < numOfTiles; i++) {
+      for (var i = 0; i < rndNum; i++) {
         self.collection.add(json.data[i]);
         self.collection.add(json.data[i]);
       };
       self.postInit();
     });
-
-    //this.listenTo(app.Tiles, 'reset', this.render);
   },
 
   postInit: function() {
@@ -60,10 +60,20 @@ app.AppView = Backbone.View.extend({
     return Math.floor((Math.random()*(to - from + 1)) + from);
   },
 
-  restart: function() {
+  restartGame: function() {
+    app.totalTries = 0;
+    app.activeTiles.reset();
     this.collection.reset();
-    this.$el.empty();
+    $('#wrap').slideDown();
     this.initialize();
-  }
+  },
 
+  gameComplete: function() {
+    this.collection.reset();
+    this.render();
+    $('#wrap').slideUp();
+    $('.message').hide();
+    var scores = Math.round((app.numOfTiles / app.totalTries) * 100);
+    this.$el.append(this.scoresTemplate({scores: scores}));
+  }
 });

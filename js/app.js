@@ -6,7 +6,7 @@ var app = app || {};
 $(function() {
 
   // App conf
-  app.tilesFlipped = 0;
+  app.totalTries = 0;
 
   // Active Tiles Collection
   app.activeTiles = new app.Tiles(),
@@ -15,12 +15,12 @@ $(function() {
   app.appView = new app.AppView();
 
   app.reset = function() {
-    app.tilesFlipped = 0;
+    app.totalTries = 0;
     app.activeTiles.reset();
-    app.appView.restart();
+    app.appView.restartGame();
   };
 
-  $('#play').on('click', function() {
+  $('.bttn').on('click', function() {
     app.reset();
   });
 

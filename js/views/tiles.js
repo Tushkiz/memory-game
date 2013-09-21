@@ -35,7 +35,8 @@ app.TileView = Backbone.View.extend({
       this.render();
 
       app.activeTiles.add(this.model); // add the model to active tiles collection
-      //console.log("ActiveTiles: " + app.activeTiles.length);
+
+      app.totalTries = app.totalTries + 1;
 
       var phrase = app.activeTiles.pluck('phrase');
 
@@ -54,13 +55,18 @@ app.TileView = Backbone.View.extend({
     app.activeTiles.each(function (tile) {
       tile.set('matchFound', true);
     });
+
     $('.message').hide().text('Match Found!').slideDown(100);
     var self = this;
     setTimeout(function() {
         $('.message').text('Removed Matching tiles!').delay(1000).fadeOut(500);
           self.finalize();
+          if(app.remainingTiles === 0) {
+            app.appView.gameComplete();
+          }
       }, 1500);
 
+    app.remainingTiles = app.remainingTiles - 2;
   },
 
   failure: function() {
@@ -78,7 +84,6 @@ app.TileView = Backbone.View.extend({
 
   finalize: function() {
     app.appView.render();
-    app.tilesFlipped = 0;
     app.activeTiles.reset();
   }
 });
