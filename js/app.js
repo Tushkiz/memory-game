@@ -5,11 +5,23 @@ var app = app || {};
 
 $(function() {
 
+  // App conf
+  app.tilesFlipped = 0;
+
+  // Active Tiles Collection
+  app.activeTiles = new app.Tiles(),
+
   // Start the App
-  appView = new app.AppView();
+  app.appView = new app.AppView();
+
+  app.reset = function() {
+    app.tilesFlipped = 0;
+    app.activeTiles.reset();
+    app.appView.restart();
+  };
 
   $('#play').on('click', function() {
-    appView.restart();
+    app.reset();
   });
 
 

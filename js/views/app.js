@@ -9,6 +9,7 @@ app.AppView = Backbone.View.extend({
 
   el: '.board',
 
+  // Tiles Collection
   collection : new app.Tiles(),
 
   // Events.
@@ -41,6 +42,7 @@ app.AppView = Backbone.View.extend({
   },
 
   render: function() {
+    this.$el.empty();
     _.each(this.collection.models, function(tile) {
       this.renderTile(tile);
     },this);

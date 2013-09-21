@@ -12,6 +12,7 @@ app.Tile = Backbone.Model.extend({
     phrase: '',
     image: '',
     overlayImage: 'img/default_overlay.gif',
+    successImage: 'img/success_image.jpg',
     flipped: false,
     matchFound: false
   }
