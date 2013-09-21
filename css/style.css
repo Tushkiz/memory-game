@@ -87,10 +87,6 @@ header {
   box-shadow: 0 0 20px #5ff; /* #f7f; */
 }
 
-.tile:active {
-  box-shadow: 0 0 20px #5ff;
-}
-
 .active {
   box-shadow: 0 0 20px #5ff;
 }

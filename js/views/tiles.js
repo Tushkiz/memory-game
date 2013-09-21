@@ -30,7 +30,7 @@ app.TileView = Backbone.View.extend({
 
   revealTile: function() {
     if (app.activeTiles.length < 2) {
-      this.model.set('flipped', !this.model.get('flipped'));
+      this.model.set('flipped', true);
       this.$el.toggleClass('active');
       this.render();
 
