@@ -27,8 +27,12 @@ app.AppView = Backbone.View.extend({
     app.remainingTiles = app.numOfTiles = rndNum * 2;
 
     // Get data from words.json
-    $.getJSON('/game/js/test.json', function(json) {
+    $.getJSON('/game/js/words.json', function(json) {
       for (var i = 0; i < rndNum; i++) {
+        // preload images
+        self.preloadImage(json.data[i].image);
+
+        // add data into collection
         self.collection.add(json.data[i]);
         self.collection.add(json.data[i]);
       };
@@ -56,10 +60,6 @@ app.AppView = Backbone.View.extend({
     this.$el.append(tileView.render().el);
   },
 
-  randomNum: function(from, to) {
-    return Math.floor((Math.random()*(to - from + 1)) + from);
-  },
-
   restartGame: function() {
     app.totalTries = 0;
     app.activeTiles.reset();
@@ -75,5 +75,14 @@ app.AppView = Backbone.View.extend({
     $('.message').hide();
     var scores = Math.round((app.numOfTiles / app.totalTries) * 100);
     this.$el.append(this.scoresTemplate({scores: scores}));
+  },
+
+  randomNum: function(from, to) {
+    return Math.floor((Math.random()*(to - from + 1)) + from);
+  },
+
+  preloadImage: function (url) {
+    var _img = new Image();
+    _img.src = url;
   }
 });

@@ -2,8 +2,8 @@
 
 var app = app || {};
 
-// Tile Item View
-// --------------
+// Tiles View
+// ----------
 
 app.TileView = Backbone.View.extend({
 
@@ -11,8 +11,7 @@ app.TileView = Backbone.View.extend({
   className: 'tile',
 
   // Template
-  //template: _.template( '<img src="<%= matchFound ? successImage : (flipped ? image : overlayImage) %>" alt="<%= phrase %>">' ),
-  template: _.template( '<img src="<%= flipped ? image : overlayImage %>" alt="<%= phrase %>">' ),
+  template: _.template( '<img src="<%= flipped ? image : overlayImage %>" alt="<%= flipped ? phrase : "Guess?" %>">' ),
 
   // Events
   events: {
